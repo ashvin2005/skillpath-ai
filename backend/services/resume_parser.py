@@ -65,6 +65,7 @@ def extract_text_from_bytes(file_bytes: bytes, filename: str) -> str:
         except UnicodeDecodeError:
             return file_bytes.decode("latin-1").strip()
     else:
+
         try:
             return file_bytes.decode("utf-8").strip()
         except Exception as e:
@@ -74,6 +75,9 @@ def extract_text_from_bytes(file_bytes: bytes, filename: str) -> str:
 def clean_text(text: str) -> str:
     """Remove excessive whitespace and normalize the text."""
     import re
+
     text = text.replace("\x00", "")
+
     text = re.sub(r"\n{3,}", "\n\n", text)
+
     return text.strip()

@@ -1,6 +1,12 @@
+"""
+Pydantic schemas for SkillPath AI backend.
+All request and response models for the API.
+"""
+
 from pydantic import BaseModel, Field
 from typing import List, Optional, Dict, Any
 from enum import Enum
+
 
 
 
@@ -17,52 +23,6 @@ class ProficiencyLevel(int, Enum):
     INTERMEDIATE = 3
     ADVANCED = 4
     EXPERT = 5
-
-
-
-
-class ONetJobZone(BaseModel):
-    job_zone: int = Field(..., description="Job Zone number (e.g., 1-5)")
-    name: str = Field(..., description="Job Zone name (e.g., 'Job Zone One: Little or No Preparation Needed')")
-    experience_needed: Optional[str] = Field(None, description="Experience requirements description")
-    education_needed: Optional[str] = Field(None, description="Educational requirements description")
-    job_training_needed: Optional[str] = Field(None, description="Job training requirements description")
-
-
-class ONetKnowledge(BaseModel):
-    element_id: str = Field(..., description="O*NET Element ID")
-    element_name: str = Field(..., description="Knowledge element name")
-    description: str = Field(..., description="Knowledge element description")
-
-
-class ONetWorkActivity(BaseModel):
-    element_id: str = Field(..., description="IWA or DWA Element ID")
-    element_name: str = Field(..., description="Activity name")
-    description: Optional[str] = Field(None, description="Activity description")
-
-
-class ONetTaskCategory(BaseModel):
-    category_id: str = Field(..., description="Task category ID")
-    category_description: str = Field(..., description="Description of the task category")
-
-
-class ONetWorkContext(BaseModel):
-    element_id: str = Field(..., description="Work Context Element ID")
-    element_name: str = Field(..., description="Work Context element name")
-    description: str = Field(..., description="Work Context description")
-
-
-
-
-class ResumeRecord(BaseModel):
-    id: Optional[str] = Field(None, description="Unique identifier for the resume")
-    category: str = Field(..., description="Industry or role category from the dataset")
-    resume_text: str = Field(..., description="The parsed textual content of the resume")
-
-class JobDescriptionRecord(BaseModel):
-    id: Optional[str] = Field(None, description="Unique identifier for the job description")
-    title: str = Field(..., description="Job title")
-    description: str = Field(..., description="Full text description of the job")
 
 
 
