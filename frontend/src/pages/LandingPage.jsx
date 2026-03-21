@@ -1,3 +1,4 @@
+import BeforeAfter from '../components/skillpath/BeforeAfter'
 const features = [
   {
     title: "Skill Gap Analysis",
@@ -100,6 +101,8 @@ function LandingPage({ onNavigate }) {
           </div>
         ))}
       </div>
+
+      <BeforeAfter />
 
 
     </div>
