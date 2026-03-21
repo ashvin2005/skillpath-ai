@@ -102,6 +102,14 @@ function LandingPage({ onNavigate }) {
         ))}
       </div>
 
+      {/* Add this divider space */}
+      <div className="w-full max-w-4xl mx-auto mt-10 mb-10"
+        style={{
+          height: "1px",
+          background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)"
+        }}
+      />
+
       <BeforeAfter />
 
 

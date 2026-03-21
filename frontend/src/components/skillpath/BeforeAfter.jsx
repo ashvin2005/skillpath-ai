@@ -15,7 +15,7 @@ const afterPoints = [
     { color: "#00e5a0", text: "Personalized to your skill gaps" },
     { color: "#00e5a0", text: "AI identifies what's missing" },
     { color: "#00e5a0", text: "Skip what you already know" },
-    { color: "#00e5a0", text: "Every course explained by AI" },
+    { color: "#00e5a0", text: "Every course explained with reasoning" },
 ]
 
 function BeforeAfter() {
@@ -50,7 +50,7 @@ function BeforeAfter() {
     }
 
     return (
-        <div className="w-full py-16 px-6 flex flex-col items-center gap-6">
+        <div className="w-full pt-8 pb-16 px-6 flex flex-col items-center gap-6">
 
             {/* Section heading */}
             <div className="text-center mb-2">
