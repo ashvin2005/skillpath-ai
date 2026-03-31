@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { downloadRoadmapPDF } from '../utils/exportPDF'
-import SkillGraph from '../components/skillpath/SkillGraph'
 import ReasoningPanel from '../components/skillpath/ReasoningPanel'
 
 const courses = [
