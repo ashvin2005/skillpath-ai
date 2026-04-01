@@ -12,7 +12,7 @@
 
 **An AI-driven adaptive onboarding engine that parses your resume,
 identifies exact skill gaps against any job description, and generates
-a personalized learning roadmap — powered by Groq + Llama-3 and O\*NET.**
+a personalized learning roadmap powered by Groq + Llama-3 and O\*NET.**
 
 [Usage](#usage) · [Architecture](#architecture) · [API](#api-endpoints) · [Setup](#installation)
 
@@ -22,8 +22,8 @@ a personalized learning roadmap — powered by Groq + Llama-3 and O\*NET.**
 
 ## The Problem
 
-Corporate onboarding is broken. Every new hire — whether a fresher
-or a 5-year veteran — receives the same generic training curriculum.
+Corporate onboarding is broken. Every new hire whether a fresher
+or a 5-year veteran receives the same generic training curriculum.
 Experienced hires waste time on concepts they already know.
 Beginners get overwhelmed by advanced content.
 Neither reaches productivity efficiently.
@@ -32,7 +32,7 @@ Neither reaches productivity efficiently.
 
 SkillPath AI analyzes each hire's resume against their target job
 description, mathematically identifies the exact skill gaps, and
-generates a personalized step-by-step learning roadmap — unique
+generates a personalized step-by-step learning roadmap unique
 to every individual.
 
 ---
@@ -43,11 +43,11 @@ to every individual.
 Most AI apps output answers without explanation. SkillPath AI
 outputs every recommendation with full mathematical and semantic
 reasoning. The frontend renders a Reasoning Panel showing exactly
-WHY each course was recommended — down to the O*NET importance
+WHY each course was recommended down to the O*NET importance
 weight that triggered it.
 
 ### O\*NET Standardization
-Raw skill matching fails silently — "NLP" and "Natural Language
+Raw skill matching fails silently "NLP" and "Natural Language
 Processing" and "Text Analysis" are the same skill but a string
 match would miss this entirely. We ground all extraction to the
 O*NET database, ensuring apples-to-apples comparison across
@@ -63,18 +63,18 @@ through the DAG = minimum time to role readiness.
 
 ## Features
 
-- **Resume Analysis** — Parses PDF and DOCX resumes to extract
+- **Resume Analysis** Parses PDF and DOCX resumes to extract
   skills with confidence scores 0-100
-- **Skill Gap Analysis** — Computes `gap_score = role_level −
+- **Skill Gap Analysis** Computes `gap_score = role_level −
   candidate_level`, weighted by O*NET importance
-- **Adaptive Pathway Generation** — DAG-based topological sort
+- **Adaptive Pathway Generation** DAG-based topological sort
   produces an ordered learning curriculum
-- **Reasoning Trace** — Every recommendation explained with
+- **Reasoning Trace** Every recommendation explained with
   mathematical justification via TraceLogger
-- **Interactive Skill Graph** — Visualizes skill dependencies
+- **Interactive Skill Graph** Visualizes skill dependencies
   and learning path in real time
-- **PDF Export** — Download your personalized roadmap as PDF
-- **Cross-Domain Support** — Works for Technical and
+- **PDF Export** Download your personalized roadmap as PDF
+- **Cross-Domain Support** Works for Technical and
   Operational roles
 
 ---
@@ -126,7 +126,7 @@ coverage_score = matched_skills / total_required_skills
 | Technology | Purpose |
 |---|---|
 | FastAPI Python 3.10+ | Async API framework |
-| Groq API | LPU inference — significantly faster than GPU |
+| Groq API | LPU inference significantly faster than GPU |
 | Llama-3 / Mixtral | Zero-shot + few-shot skill NER |
 | NetworkX | DAG construction and pathfinding |
 | Pydantic | Structured JSON validation |
@@ -199,7 +199,7 @@ coverage_score = matched_skills / total_required_skills
 
 - Python 3.10+
 - Node.js 18+
-- Groq API key — free at [groq.com](https://groq.com)
+- Groq API key free at [groq.com](https://groq.com)
 
 ### Backend Setup
 
