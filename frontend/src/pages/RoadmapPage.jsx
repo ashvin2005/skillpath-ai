@@ -223,24 +223,30 @@ function RoadmapPage({ onNavigate, resultData }) {
     const [completedCourses, setCompletedCourses] = useState([])
     const [downloading, setDownloading] = useState(false)
 
-    // Build courses from real backend data
-    const pathway = resultData?.pathway || {}
-    const courses = Array.isArray(pathway.courses)
-        ? pathway.courses.map((c, i) => ({
-            id: c.id || i + 1,
-            title: c.title || c.course_name || `Course ${i + 1}`,
-            subtitle: c.subtitle || c.description || "",
-            duration: c.duration || c.estimated_hours ? `${c.estimated_hours} hours` : "N/A",
-            skill: c.skill || c.target_skill || "",
-            priority: c.priority || (c.priority_score >= 4 ? "HIGH PRIORITY" : "MEDIUM"),
-            priorityColor: (c.priority === "HIGH PRIORITY" || c.priority_score >= 4) ? "#ff4d6a" : "#ff9500",
-            reasoning: c.reasoning || c.why || ""
-        }))
-        : []
+    // Backend returns: resultData.pathway.pathway = array of PathwayStep
+    const pathwayData = resultData?.pathway || {}
+    const rawSteps = Array.isArray(pathwayData.pathway) ? pathwayData.pathway : []
 
-    // Build graph nodes/edges from real backend data
-    const nodes = Array.isArray(pathway.graph_nodes) ? pathway.graph_nodes : []
-    const edges = Array.isArray(pathway.graph_edges) ? pathway.graph_edges : []
+    const courses = rawSteps.map((c, i) => {
+        const hours = c.estimated_hours ?? c.duration ?? 0
+        const priorityScore = c.priority_score ?? c.gap_score ?? 0
+        const isHigh = priorityScore >= 3 || c.priority === "HIGH PRIORITY"
+        return {
+            id: c.course_id || c.id || i + 1,
+            title: c.course_name || c.title || `Course ${i + 1}`,
+            subtitle: c.skill_gap || c.subtitle || c.description || "",
+            duration: `${hours} hours`,
+            skill: c.skill_gap || c.skill || c.target_skill || "",
+            priority: isHigh ? "HIGH PRIORITY" : "MEDIUM",
+            priorityColor: isHigh ? "#ff4d6a" : "#ff9500",
+            reasoning: c.reasoning || c.why || ""
+        }
+    })
+
+    // Graph data from backend
+    const graphData = pathwayData.graph_data || {}
+    const nodes = Array.isArray(graphData.nodes) ? graphData.nodes : []
+    const edges = Array.isArray(graphData.edges) ? graphData.edges : []
 
     const toggleCourse = (id) => {
         setCompletedCourses((prev) =>
@@ -288,7 +294,9 @@ function RoadmapPage({ onNavigate, resultData }) {
         )
     }
 
-    const roleName = resultData?.parsed?.target_role || "your target role"
+    const roleName = resultData?.parse?.target_role
+        || resultData?.parsed?.target_role
+        || "your target role"
 
     return (
         <div className="min-h-screen px-6 py-12 max-w-4xl mx-auto">
